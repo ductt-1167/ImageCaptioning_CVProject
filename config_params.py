@@ -24,7 +24,7 @@ batch_size = 64
 epochs = 10
 learning_rate = 0.01
 
-# first run, config extraction=True to extract feature and save it with format npy in folder data_npy_folder.
+# first training, config extraction=True to extract feature and save it with format npy in folder data_npy_folder.
 extraction = False
 
 

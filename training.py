@@ -22,7 +22,7 @@ attention_features_shape = 64
 
 start_epoch = 0
 EPOCHS = config_params.epochs
-continue_train = False
+continue_train = False  # for continue training
 
 tokenizer = get_data.get_tokenizer()
 
@@ -88,11 +88,7 @@ loss_val_plot = []
 
 # Init optimizer and loss function
 optimizer = tf.keras.optimizers.Adam()
-loss_fc = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True, reduction='none')
-
-# early stopping
-pre_loss = 10.0
-count_stop = 0
+loss_fc = tf.keras.losses.SparseCategoricalCrossentropy()
 
 
 def loss_function(y_true, y_pred):
@@ -217,16 +213,6 @@ for epoch in range(start_epoch, start_epoch+EPOCHS):
 
     loss_train_plot.append(total_loss_train / num_steps_train)
     loss_val_plot.append(total_loss_val / num_steps_val)
-
-    # done 1 epoch
-    # if pre_loss < total_loss_val / num_steps_val:
-    #     count_stop += 1
-    # else:
-    #     count_stop = 0
-    # if count_stop < 3:
-    #     manager.save()
-    #
-    # pre_loss = total_loss_val / num_steps_val
 
     manager.save()
 

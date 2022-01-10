@@ -1,4 +1,5 @@
 import tensorflow as tf
+import numpy as np
 
 import get_data
 
@@ -46,7 +47,8 @@ def predict_caption_from_image(image, encoder, decoder, tokenizer):
                                                          hidden)
 
         # Predict token of next word
-        predicted_id = tf.random.categorical(predictions, 1)[0][0].numpy()
+        predicted_id = list(predictions[0].numpy()).index(max(predictions[0].numpy()))
+        # predicted_id = tf.random.categorical(predictions, 1)[0][0].numpy()
 
         # If predict token is <end> --> end sentence --> break
         if tokenizer.index_word[predicted_id] == '<end>':

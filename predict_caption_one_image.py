@@ -9,13 +9,12 @@ import model
 import inference
 
 
+image_inference_path = "path_image"
+
+
 def show_image(path_image):
     # read the image
     im = Image.open(path_image)
-
-    # # add caption predict
-    # d = ImageDraw.Draw(im)
-    # d.text((10, 10), "Predict caption:" + caption, fill=(255, 255, 0))
     # show image
     im.show()
 
@@ -23,7 +22,7 @@ def show_image(path_image):
 folder_image_path = config_params.image_path
 file_data_test = config_params.file_data_test
 caption_file = config_params.caption_file
-checkpoint_path = "E:/20211\ThiGiacMayTinh\Project\checkpoints\epoch_21"#config_params.checkpoint_path
+checkpoint_path = config_params.checkpoint_path
 
 # init and load model
 embedding_dim = config_params.embedding_dim
@@ -65,10 +64,19 @@ print("Testing dataset: {} samples".format(len(list_test_image)))
 image_path_to_caption, _ = get_data.get_image_path_to_caption(folder_image_path, caption_file)
 
 
-for image in list_test_image[30:35]:
-    prediction = inference.predict_caption_from_image(image, encoder, decoder, tokenizer)
-    prediction_sentence = " ".join(prediction)
-    show_image(image)
-    print(image_path_to_caption[image])
-    print(prediction_sentence)
-    print('========================')
+# Test image
+prediction = inference.predict_caption_from_image(image_inference_path, encoder, decoder, tokenizer)
+prediction_sentence = " ".join(prediction)
+show_image(image_inference_path)
+print(prediction_sentence)
+print('========================')
+
+
+# # get some images for report
+# for image in list_test_image[100:105]:
+#     prediction = inference.predict_caption_from_image(image, encoder, decoder, tokenizer)
+#     prediction_sentence = " ".join(prediction)
+#     show_image(image)
+#     print(image_path_to_caption[image])
+#     print(prediction_sentence)
+#     print('========================')
