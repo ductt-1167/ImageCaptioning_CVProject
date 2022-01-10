@@ -16,5 +16,5 @@
 
 # Note
 - Folder **data_npy_folder** include feature image with npy format, first time training, set extraction=true and training. If test or evaluate, not care this param.
-- You can download my checkpoint (10 epochs training) in [here](https://drive.google.com/file/d/1HIzdjpgdmPw5Cs782algwH2-9ceZ0YtP/view?usp=sharing) to evaluate or inference model
+- You can download my checkpoint (10 epochs training) in [here](https://drive.google.com/file/d/1GTbhZ3hbjjc3fU94tcTXPdf_jUr5HcUp/view?usp=sharing) to evaluate or inference model
 
